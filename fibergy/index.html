@@ -768,10 +768,10 @@
                     </div>
 
                     <div class="title">
-                        <h1>Fibergy
+                        <h1>FIBERGY
                         </h1>
                         <p class="sub">
-                            Energievertrieb • Sales Experten
+                            Sales Experten
                         </p>
 
                         <div class="badges" aria-label="Highlights">
@@ -992,11 +992,119 @@
     </div>
 
     <footer>
-        ©️ <span id="y">2026</span> Fibergy • Powered by WeTap •
+        © <span id="y">2026</span> Fibergy • Powered by WeTap •
         <span class="footer-link" onclick="openImpressum()">Impressum</span>
     </footer>
+
     </main>
     </div>
+
+    <style>
+        .impressum-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .imp-section {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Mobile responsive */
+        @media (max-width:700px) {
+            .impressum-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+
+        .impressum-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(4px);
+        }
+
+        .impressum-box {
+            background: #ffffff;
+            padding: 36px;
+            border-radius: 16px;
+            max-width: 520px;
+            width: 90%;
+            line-height: 1.6;
+            font-size: 14px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .impressum-box h2 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+
+        .legal-note {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .imp-section {
+            margin-bottom: 10px;
+        }
+
+        .imp-section h3 {
+            font-size: 15px;
+            margin-bottom: 8px;
+            color: #222;
+        }
+
+        .company {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .subtitle {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .address {
+            margin-bottom: 10px;
+        }
+
+        .impressum-box hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 25px 0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .footer-link {
+            cursor: pointer;
+        }
+
+        .footer-link:hover {
+            opacity: 0.7;
+        }
+    </style>
+
     <!-- Impressum Overlay -->
     <div id="impressumOverlay" class="impressum-overlay">
         <div class="impressum-box">
@@ -1005,35 +1113,67 @@
 
             <h2>Impressum</h2>
 
-            <p><strong>Angaben gemäß §5 TMG</strong></p>
+            <p class="legal-note">Angaben gemäß §5 DDG</p>
 
-            <p>
-                <strong>Fibergy</strong><br>
-                Energie- & Glasfaservertrieb
-            </p>
+            <div class="impressum-grid">
 
-            <p>
-                Engerser Str. 86<br>
-                56564 Neuwied<br>
-                Deutschland
-            </p>
+                <!-- LEFT COLUMN -->
+                <div class="imp-section">
+                    <h3>Betreiber der Website</h3>
 
-            <p>
-                <strong>Kontakt</strong><br>
-                E-Mail: kontakt@fibergy.de
-            </p>
+                    <p class="company">Fibergy</p>
 
-            <p>
-                <strong>Umsatzsteuer-ID</strong><br>
-                USt-IdNr.: DE358975802
-            </p>
+                    <p class="address">
+                        Engerser Str. 86<br>
+                        56564 Neuwied<br>
+                        Deutschland
+                    </p>
 
-            <p>
-                Verantwortlich für den Inhalt nach §55 Abs.2 RStV:<br>
-                Mounir Louati<br>
-                Engerser Str. 86<br>
-                56564 Neuwied
-            </p>
+                    <p>
+                        <strong>Kontakt</strong><br>
+                        E-Mail: kontakt@fibergy.de
+                    </p>
+
+                    <p>
+                        <strong>Umsatzsteuer-ID</strong><br>
+                        DE358975802
+                    </p>
+
+                    <p>
+                        <strong>Verantwortlich für den Inhalt nach §55 Abs.2 RStV</strong><br>
+                        Mounir Louati<br>
+                        Engerser Str. 86<br>
+                        56564 Neuwied
+                    </p>
+                </div>
+
+                <!-- RIGHT COLUMN -->
+                <div class="imp-section">
+                    <h3>Website & Technische Umsetzung</h3>
+
+                    <p class="company">WeTap / VTAP e.Kfm</p>
+
+                    <p class="address">
+                        Michel-Obentraut-Str. 1E<br>
+                        55442 Stromberg<br>
+                        Deutschland
+                    </p>
+
+                    <p>
+                        <strong>Inhaber</strong><br>
+                        Lee Hawkins
+                    </p>
+
+                    <p>
+                        <strong>Kontakt</strong><br>
+                        Telefon: +49 151 20782523<br>
+                        E-Mail: wetap.pro@gmail.com
+                    </p>
+
+                </div>
+
+            </div>
+
         </div>
     </div>
 
