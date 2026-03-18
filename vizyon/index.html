@@ -835,6 +835,113 @@
             </span>
             <span class="arrow">→</span>
           </a>
+          <!-- ✅ 1) ADD THIS BUTTON inside <section class="btns"> (e.g., under Instagram/Facebook) -->
+        <a class="btn" href="#" onclick="
+              openWifiModal();
+              return false;
+            ">
+          <span class="left">
+            <span class="icon" aria-hidden="true">
+              <!-- WiFi icon -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 10c4.7-4 9.3-4 14 0" stroke="#151515" stroke-width="1.6" stroke-linecap="round" />
+                <path d="M8 13c3-2.5 5-2.5 8 0" stroke="#151515" stroke-width="1.6" stroke-linecap="round" />
+                <path d="M11 16c1-.8 1.9-.8 3 0" stroke="#151515" stroke-width="1.6" stroke-linecap="round" />
+                <path d="M12 19h0" stroke="#151515" stroke-width="4" stroke-linecap="round" />
+              </svg>
+            </span>
+            <span class="label">
+              <span>WLAN</span>
+              <small>Benutzername &amp; Passwort anzeigen</small>
+            </span>
+          </span>
+          <span class="arrow">→</span>
+        </a>
+
+        <!-- ✅ 2) ADD THIS MODAL near your Table Modal (below it is perfect) -->
+        <div id="wifiModal" class="table-modal">
+          <div class="table-modal-content">
+            <h2>WLAN Zugang</h2>
+            <p>Hier sind die Zugangsdaten für unser Gäste-WLAN:</p>
+
+            <div style="
+                  padding: 16px;
+                  border-radius: 12px;
+                  background: #f8f8f8;
+                  margin-bottom: 18px;
+                ">
+              <div style="
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 12px;
+                    align-items: center;
+                  ">
+                <div style="min-width: 0">
+                  <p style="
+                        margin: 0;
+                        font-size: 12px;
+                        color: #666;
+                        font-weight: 700;
+                      ">
+                    Benutzername
+                  </p>
+                  <p id="wifiUser" style="
+                        margin: 4px 0 0;
+                        font-size: 18px;
+                        font-weight: 800;
+                        color: #151515;
+                        word-break: break-word;
+                      ">
+                    MagentaWLAN-TEHM
+                  </p>
+                </div>
+              </div>
+
+              <div style="height: 10px"></div>
+
+              <div style="
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 12px;
+                    align-items: center;
+                  ">
+                <div style="min-width: 0">
+                  <p style="
+                        margin: 0;
+                        font-size: 12px;
+                        color: #666;
+                        font-weight: 700;
+                      ">
+                    Passwort
+                  </p>
+                  <p id="wifiPass" style="
+                        margin: 4px 0 0;
+                        font-size: 18px;
+                        font-weight: 800;
+                        color: #008c45;
+                        word-break: break-word;
+                      ">
+                    98914450331179206299
+                  </p>
+                </div>
+                <button class="table-modal-confirm" style="padding: 10px 12px; font-size: 13px" onclick="
+                      copyText(document.getElementById('wifiPass').textContent)
+                    ">
+                  Kopieren
+                </button>
+              </div>
+            </div>
+
+            <div class="table-modal-buttons">
+              <button class="table-modal-cancel" onclick="closeWifiModal()">
+                Zurück
+              </button>
+              <button class="table-modal-confirm" onclick="closeWifiModal()">
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
           <!-- Menu (Google menu / Speisekarte) -->
           <a
             class="btn"
@@ -1096,7 +1203,7 @@
 
     <div class="chef-content">
       <div class="chef-title">Gruß aus der Küche</div>
-      <div class="chef-sub">Chef-Botschaft</div>
+      <div class="chef-sub">Geschäftsführer</div>
     </div>
   </div>
 
@@ -1174,3 +1281,44 @@ if (list && aiSets.length) {
 </script>
   </body>
 </html>
+
+<script>
+    function openWifiModal() {
+      document.getElementById("wifiModal").classList.add("active");
+    }
+
+    function closeWifiModal() {
+      document.getElementById("wifiModal").classList.remove("active");
+    }
+
+    async function copyText(text) {
+      try {
+        await navigator.clipboard.writeText(text.trim());
+        // Optional tiny feedback
+        // alert("Kopiert!");
+      } catch (err) {
+        // Fallback for older browsers
+        const ta = document.createElement("textarea");
+        ta.value = text.trim();
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+    }
+
+    // Close WiFi modal on outside click
+    document
+      .getElementById("wifiModal")
+      .addEventListener("click", function (e) {
+        if (e.target === this) closeWifiModal();
+      });
+
+    // Extend Escape key to close both modals
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        closeTableModal();
+        closeWifiModal();
+      }
+    });
+  </script>
