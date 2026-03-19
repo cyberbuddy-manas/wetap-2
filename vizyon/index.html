@@ -1223,6 +1223,34 @@
       </main>
     </div>
 
+    <style>
+      .copy-toast {
+        position: fixed;
+        left: 50%;
+        bottom: 24px;
+        transform: translateX(-50%) translateY(20px);
+        background: #151515;
+        color: #ffffff;
+        padding: 12px 18px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 700;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease;
+        z-index: 10000;
+      }
+
+      .copy-toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    </style>
+    <div id="copyToast" class="copy-toast" aria-live="polite" aria-atomic="true">
+      Passwort kopiert
+    </div>
+
     <!-- Table modal (for digital menu flow) -->
     <!-- ...existing code... -->
 
@@ -1291,19 +1319,31 @@ if (list && aiSets.length) {
       document.getElementById("wifiModal").classList.remove("active");
     }
 
+    function showCopyToast(message = "Passwort kopiert") {
+      const toast = document.getElementById("copyToast");
+      if (!toast) return;
+
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      clearTimeout(window.copyToastTimer);
+      window.copyToastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 1800);
+    }
+
     async function copyText(text) {
       try {
         await navigator.clipboard.writeText(text.trim());
-        // Optional tiny feedback
-        // alert("Kopiert!");
+        showCopyToast("Passwort kopiert");
       } catch (err) {
-        // Fallback for older browsers
         const ta = document.createElement("textarea");
         ta.value = text.trim();
         document.body.appendChild(ta);
         ta.select();
         document.execCommand("copy");
         document.body.removeChild(ta);
+        showCopyToast("Passwort kopiert");
       }
     }
 
